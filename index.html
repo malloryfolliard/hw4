@@ -1,0 +1,88 @@
+<!DOCTYPE html> 
+<html>
+<head>
+	<title>Joes Hotdogs</title>
+	<meta name='viewport' content="width=device-width, initial-scale=1">
+</head>
+
+<style type="text/css">
+	.column {float: left; width:50%;}
+	.row:after{display:table; clear:both;}
+	ul{font-size:25px;}
+	h2, h3{text-align: center; background-color: #FFE1DB;}
+</style>\
+
+<body style="background-color: #F4CCC3">
+	<h2>Thank you for visiting Joe's Hotdogs online ordering. Below you can click the order button to see pricings on your selected items</h2>
+	<h3>Hotdogs($3.75 each), French Fries($2.00 each), Drinks($1.50 each)</h3>
+	<form onsubmit="return false">
+			<h4>Click the order button below to start</h4>
+		<input type="submit" value="Order" onclick="run()">
+	</form>
+
+	<div class="row" style="background-color: #FFFFFF; border-width: 4px;">
+		<h3>Check</h3>
+		<div class="column" style="text-align: right";> 
+			<ul style="list-style-type: none">
+				<b>
+				<li>Hotdogs</li>
+				<li>French Fries</li>
+				<li>Drinks</li>
+				<li>Sub Total</li>
+				<li>Discount</li>
+				<li>Tax</li>
+				<li>Total</li>
+				</b>
+			</ul>
+		</div>
+
+		<div class="column">
+			<ul style="list-style-type: none">
+				<li id='hPrice'>$0.00</li>
+				<li id="fPrice">$0.00</li>
+				<li id="dPrice">$0.00</li>
+				<li id="sub">$0.00</li>
+				<li id="disc">$0.00</li>
+				<li id="tax">$0.00</li>
+				<li id="total">$0.00</li>
+			</ul>
+		</div>
+	</div>
+
+		<div class="column" style="text-align: center;">
+			<div id="check" value="Check">  </div>
+		</div>
+		</form>
+
+<script language="javascript">
+
+	function run() {
+		var h, f, d, hotPrice, fryPrice, drinkPrice, subTotal, total, addDisc, addTax, DISCOUNT = 0.1, TAX_PERCENT = 0.625;
+		h = prompt("Please enter the number of hot dogs that you would like.", "0");
+		f = prompt("Please enter the number of french fries that you would like.", "0");
+		d = prompt("Please enter the number of drinks that you would like.", "0");
+		subTotal = (h*3.75) + (f*2) + (d*1.5);
+		if (subTotal >= 20) {
+			addDisc = subTotal*DISCOUNT;
+			addTax = addDisc*TAX_PERCENT;
+			document.getElementById('disc').innerHTML = "$" + addDisc.toFixed(2);
+			document.getElementById('tax').innerHTML = "$" + addTax.toFixed(2);
+			total = subTotal + addDisc + addTax;
+		} else {
+			total = subTotal + (subTotal*TAX_PERCENT);
+		}
+
+		hotPrice = (h*3.75);
+		fryPrice = (f*2);
+		drinkPrice = (d*1.5);
+
+		document.getElementById('hPrice').innerHTML = "$" + hotPrice.toFixed(2);
+		document.getElementById('fPrice').innerHTML = "$" + fryPrice.toFixed(2);
+		document.getElementById('dPrice').innerHTML = "$" + drinkPrice.toFixed(2);
+		document.getElementById('sub').innerHTML = "$" + subTotal.toFixed(2);
+		document.getElementById('total').innerHTML = "$" + total.toFixed(2);
+
+	}
+</script>
+</body>
+</html>
